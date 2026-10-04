@@ -1,0 +1,11 @@
+plugins { id 'com.android.application' }
+
+android { namespace 'com.kartikey.ares'; compileSdk 35
+    defaultConfig { applicationId 'com.kartikey.ares'; minSdk 23; targetSdk 35; versionCode 1; versionName '1.0' }
+}
+
+tasks.register('copyAresWeb', Copy) {
+    from(rootProject.projectDir.parentFile) { include 'index.html' }
+    into(layout.projectDirectory.dir('src/main/assets'))
+}
+preBuild.dependsOn(copyAresWeb)
